@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 
-const Post = ( { src } ) => ( <img src={src} alt="profile picture" /> )
+const Post = ( { src } ) => ( <img src={src} alt="profile" /> )
 
 const Profile = ( props ) => {
   const { username, src } = props;
@@ -16,7 +16,7 @@ const Profile = ( props ) => {
         setInputAccount( value )
       } } placeholder="search profile" />
       <div>Search Result for account: {inputAccount}</div>
-      <img src="https://via.placeholder.com/150" alt="profile picture" />
+      <img src="https://via.placeholder.com/150" alt="profile" />
       <div>@{username}</div>
       <button onClick={ () => setIsFollowed( !isFollowed ) } >{ isFollowed ? "Unfollow" : "Follow" }</button>
       <div>{ postCount } Posts</div>
@@ -34,7 +34,7 @@ const Profile = ( props ) => {
         
       )}
       
-      
+       
       
     </React.Fragment>
   )
