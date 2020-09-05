@@ -1,26 +1,41 @@
 import React, { useState } from 'react';
-import './App.css';
+import './index.css';
 
-const Post = ( props ) => (
-  <React.Fragment>
-    <img src={props.src} alt="profile picture" />
-  </React.Fragment>
-)
+const Post = ( { src } ) => ( <img src={src} alt="profile picture" /> )
 
 const Profile = ( props ) => {
-
+  const { username, src } = props;
   const [isFollowed, setIsFollowed] = useState(false);
+  const [inputAccount, setInputAccount] = useState(false);
+  const posts = [...Array(5)];
+  const postCount = posts.length; 
 
   return (
     <React.Fragment>
-      <img src="https://via.placeholder.com/300" alt="profile picture" />
-      <div>@{props.username}</div>
+      <input onChange={ ( { target: { value } } ) => {
+        setInputAccount( value )
+      } } placeholder="search profile" />
+      <div>Search Result for account: {inputAccount}</div>
+      <img src="https://via.placeholder.com/150" alt="profile picture" />
+      <div>@{username}</div>
       <button onClick={ () => setIsFollowed( !isFollowed ) } >{ isFollowed ? "Unfollow" : "Follow" }</button>
-      <div>Posts</div>
+      <div>{ postCount } Posts</div>
       <div>Follower</div>
       <div>Following</div>
       <div>Bio</div>
-      <Post src={props.src} />
+      { !postCount ? (
+        <div>No Post</div>
+      ) : (
+        <div className="posts" >
+          {posts.map( ( _, idx ) => ( 
+            <Post src={src} key={idx} /> 
+          ) )}
+        </div>
+        
+      )}
+      
+      
+      
     </React.Fragment>
   )
 };
